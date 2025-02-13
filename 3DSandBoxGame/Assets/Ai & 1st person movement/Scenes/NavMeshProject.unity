@@ -1437,7 +1437,7 @@ GameObject:
   - component: {fileID: 1470450443}
   - component: {fileID: 1470450448}
   - component: {fileID: 1470450449}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1550,8 +1550,7 @@ Transform:
   m_LocalPosition: {x: -5.37, y: 1.14, z: -1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2132355917}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2264,7 +2263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070676684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.47, y: 1.34, z: 18.88}
+  m_LocalPosition: {x: 20.02, y: 1.34, z: 27.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2612,12 +2611,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132355916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.015, y: 0.35, z: 0.012}
+  m_LocalPosition: {x: -5.355, y: 1.49, z: -1.588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1470450447}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2132355918
 MonoBehaviour:
@@ -2634,8 +2633,9 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 8
-  maxDistance: 80
+  maxDistance: 10
   Player: {fileID: 2070676684}
+  destroyDistance: 10
 --- !u!1 &2147409820
 GameObject:
   m_ObjectHideFlags: 0
