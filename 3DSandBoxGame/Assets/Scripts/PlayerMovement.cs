@@ -135,29 +135,35 @@ public class PlayerMovement : MonoBehaviour
     private void StateHandler()
     {
 
-        if (Input.GetKey(crouchKey))
-        {
-            state = MovementState.crouching;
-            moveSpeed = crouchSpeed;
-        }
-
-        // If Sprinting
-        if(grounded && Input.GetKey(sprintKey))
-        {
-            state = MovementState.sprinting;
-            moveSpeed = sprintSpeed;
-        }
 
         // If Walking
-        else if (grounded)
+        if (grounded)
         {
+          //  Debug.Log("Walking");
             state = MovementState.walking;
             moveSpeed = walkSpeed;
         }
 
-        // If Airboirne
-        else
+        // If Sprinting
+        if (grounded && Input.GetKey(sprintKey))
         {
+          //  Debug.Log("Sprinting");
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+
+        if (Input.GetKey(crouchKey))
+        {
+          //  Debug.Log("Crouching");
+            state = MovementState.crouching;
+            moveSpeed = crouchSpeed;
+        }
+        
+       
+        // If Airboirne
+        else 
+        {
+           // Debug.Log("Airborne");
             state = MovementState.airborne;
         }
     }
@@ -172,8 +178,15 @@ public class PlayerMovement : MonoBehaviour
         // If on slope
         if (OnSlope())
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            Vector3 slopeMoveDirection = GetSlopeMoveDirection();
+
+            // Apply force only if player is not already moving upwards too fast
+            if (rb.velocity.y < 12f)
+            {
+                rb.AddForce(slopeMoveDirection * moveSpeed * 20f, ForceMode.Force);
+            }
         }
+      
 
         // On ground
         if (grounded)
@@ -186,6 +199,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
+
+        // Disable gravity whilst on slope (Stops player slipping down slope)
+        rb.usedGravity = != OnSlope();
             
     }
 

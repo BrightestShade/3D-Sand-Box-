@@ -12631,7 +12631,7 @@ MonoBehaviour:
   activeGrapple: 0
   walkSpeed: 5
   sprintSpeed: 12
-  crouchSpeed: 3
+  crouchSpeed: 1.5
   crouchYScale: 0.5
   jumpKey: 32
   sprintKey: 304
