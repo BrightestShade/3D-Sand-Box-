@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Disable gravity whilst on slope (Stops player slipping down slope)
-        rb.usedGravity = != OnSlope();
+        rb.useGravity = !OnSlope();
             
     }
 
