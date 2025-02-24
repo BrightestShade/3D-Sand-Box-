@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool readyToJump = true; // Initialize to true
 
+    
    
 
     public Transform orientation;
@@ -175,7 +176,16 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-      
+        // on slope
+        if (OnSlope())
+        {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+
+            if(rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            }
+        }
 
         // On ground
         if (grounded)
@@ -189,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
-        
+        rb.useGravity = !OnSlope();
             
     }
 
@@ -197,12 +207,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (activeGrapple) return;
         
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        if (flatVel.magnitude > moveSpeed)
+        // Slope speed limiting
+        if(rb.velocity.magnitude > moveSpeed)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            rb.velocity = rb.velocity.normalized * moveSpeed;
+        }
+        //Ground & Air speed limiting
+        else
+        {
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            if (flatVel.magnitude > moveSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
         }
     }
 
@@ -284,9 +303,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
 
+        }
+
+        return false;
+    }
     
-   
+   private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
 
     
 
