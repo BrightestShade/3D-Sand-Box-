@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // Jump input
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKeyDown(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -147,11 +147,10 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.sliding;
 
-            if (OnSlope() && rb.velocity.y < 0.1f) ;
+            if (OnSlope() && rb.velocity.y < 0.1f)
             {
                 desiredMoveSpeed = slideSpeed;
-                
-               
+
             }
             else
             {
@@ -161,6 +160,22 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        else if (Input.GetKey(crouchKey))
+        {
+            //  Debug.Log("Crouching");
+            state = MovementState.crouching;
+            desiredMoveSpeed = crouchSpeed;
+        }
+
+        // If Sprinting
+        else if (grounded && Input.GetKey(sprintKey))
+        {
+            //  Debug.Log("Sprinting");
+            state = MovementState.sprinting;
+            desiredMoveSpeed = sprintSpeed;
+        }
+
+
         // If Walking
         else if (grounded)
         {
@@ -169,22 +184,7 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = walkSpeed;
         }
 
-        // If Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
-        {
-          //  Debug.Log("Sprinting");
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-        }
-
-        else if (Input.GetKey(crouchKey))
-        {
-          //  Debug.Log("Crouching");
-            state = MovementState.crouching;
-            desiredMoveSpeed = crouchSpeed;
-        }
         
-       
         // If Airboirne
         else 
         {
@@ -217,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
         while (time < difference)
         {
             moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
-            time += time.deltaTime;
+            time += Time.deltaTime;
             yield return null;
         }
 
