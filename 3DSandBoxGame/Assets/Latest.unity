@@ -12619,7 +12619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundDrag: 5
-  jumpForce: 8
+  jumpForce: 10
   jumpCooldown: 0.25
   airMultiplier: 0.4
   playerHeight: 2
