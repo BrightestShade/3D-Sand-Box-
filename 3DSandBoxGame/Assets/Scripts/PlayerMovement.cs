@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
 
+    
+
     public float slideSpeed;
 
     private float desiredMoveSpeed;
@@ -45,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
 
+    public float dashSpeed = 50f;
     public float crouchSpeed;
     public float crouchYScale;
     private float startYScale;
@@ -69,8 +72,10 @@ public class PlayerMovement : MonoBehaviour
         airborne,
         crouching,
         sliding,
+        dashing,
     }
     public bool sliding;
+    public bool dashing;
 
     void Start()
     {
@@ -91,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
-        if (grounded && !activeGrapple)
+        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
         {
             rb.drag = groundDrag;
         }
@@ -142,8 +147,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+
+        if (dashing)
+        {
+            state = MovementState.dashing;
+            moveSpeed = dashSpeed;
+        }
+
+
         // If sliding
-        if (sliding)
+        else if (sliding)
         {
             state = MovementState.sliding;
 
@@ -267,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
     private void SpeedControl()
     {
         if (activeGrapple) return;
-        
+        if (dashing) return;
         // Slope speed limiting
         if(rb.velocity.magnitude > desiredMoveSpeed)
         {

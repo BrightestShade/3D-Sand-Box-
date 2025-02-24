@@ -7,7 +7,7 @@ public class Teleporter : MonoBehaviour
 
     
    
-    private void OnTriggerEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.tag == "Player")
         {

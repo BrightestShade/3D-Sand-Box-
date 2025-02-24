@@ -3766,7 +3766,6 @@ GameObject:
   - component: {fileID: 536209776}
   - component: {fileID: 536209775}
   - component: {fileID: 536209774}
-  - component: {fileID: 536209773}
   m_Layer: 0
   m_Name: TeleporterTop
   m_TagString: Teleporter
@@ -3774,18 +3773,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &536209773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536209772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b01e8849c2a6ce4e9c9ba40201e1543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &536209774
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5986,7 +5973,6 @@ GameObject:
   - component: {fileID: 972457376}
   - component: {fileID: 972457375}
   - component: {fileID: 972457374}
-  - component: {fileID: 972457373}
   m_Layer: 0
   m_Name: TeleporterBottom
   m_TagString: Teleporter
@@ -5994,18 +5980,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &972457373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972457372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b01e8849c2a6ce4e9c9ba40201e1543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &972457374
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13352,6 +13326,7 @@ GameObject:
   - component: {fileID: 1979736603}
   - component: {fileID: 1979736602}
   - component: {fileID: 1979736604}
+  - component: {fileID: 1979736605}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -13391,7 +13366,7 @@ MonoBehaviour:
   groundDrag: 1
   jumpForce: 20
   jumpCooldown: 0.25
-  airMultiplier: 0.2
+  airMultiplier: 0
   slideSpeed: 30
   playerHeight: 2
   whatIsGround:
@@ -13403,6 +13378,7 @@ MonoBehaviour:
   activeGrapple: 0
   walkSpeed: 8
   sprintSpeed: 12
+  dashSpeed: 20
   crouchSpeed: 1.5
   crouchYScale: 0.5
   jumpKey: 32
@@ -13411,6 +13387,7 @@ MonoBehaviour:
   maxSlopeAngle: 50
   state: 0
   sliding: 0
+  dashing: 0
 --- !u!54 &1979736603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13456,6 +13433,26 @@ MonoBehaviour:
   slideForce: 300
   slideYScale: 0.5
   slideKey: 306
+--- !u!114 &1979736605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979736600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18094c4a3d39915418e29f96ade90ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1580968931}
+  MainCamera: {fileID: 1969726446}
+  dashForce: 20
+  dashUpwardForce: 0
+  dashDuration: 0.25
+  dashCoolDown: 1.5
+  dashCoolDownTimer: 0
+  dashKey: 113
 --- !u!1 &2001165727
 GameObject:
   m_ObjectHideFlags: 0
