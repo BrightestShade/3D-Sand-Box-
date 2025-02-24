@@ -239,6 +239,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
             }
+            else if (sliding && OnSlope())
+            {
+                rb.AddForce(GetSlopeMoveDirection(moveDirection) * slideSpeed * 20f, ForceMode.Force);
+
+                // Apply a downward force to keep the player on the slope
+                rb.AddForce(Vector3.down * 30f, ForceMode.Force);
+            }
         }
 
         // On ground
@@ -262,18 +269,18 @@ public class PlayerMovement : MonoBehaviour
         if (activeGrapple) return;
         
         // Slope speed limiting
-        if(rb.velocity.magnitude > moveSpeed)
+        if(rb.velocity.magnitude > desiredMoveSpeed)
         {
-            rb.velocity = rb.velocity.normalized * moveSpeed;
+            rb.velocity = rb.velocity.normalized * desiredMoveSpeed;
         }
         //Ground & Air speed limiting
         else
         {
             Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-            if (flatVel.magnitude > moveSpeed)
+            if (flatVel.magnitude > desiredMoveSpeed)
             {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                Vector3 limitedVel = flatVel.normalized * desiredMoveSpeed;
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
