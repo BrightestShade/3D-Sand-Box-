@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
 
         // Ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
         Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
@@ -175,17 +175,6 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // If on slope
-        if (OnSlope())
-        {
-            Vector3 slopeMoveDirection = GetSlopeMoveDirection();
-
-            // Apply force only if player is not already moving upwards too fast
-            if (rb.velocity.y < 12f)
-            {
-                rb.AddForce(slopeMoveDirection * moveSpeed * 20f, ForceMode.Force);
-            }
-        }
       
 
         // On ground
@@ -200,8 +189,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
-        // Disable gravity whilst on slope (Stops player slipping down slope)
-        rb.useGravity = !OnSlope();
+        
             
     }
 
@@ -298,25 +286,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     
-    private bool OnSlope()
-    {
-
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
-        {
-            float angle = Vector3 .Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0;
-        }
-
-        return false;
-
-
-    }
-
-
-    private Vector3 GetSlopeMoveDirection()
-    {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
-    }
+   
 
     
 
