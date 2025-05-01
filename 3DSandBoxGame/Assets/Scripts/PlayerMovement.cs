@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
 
-    
 
+    public float wallrunSpeed;
     public float slideSpeed;
 
     private float desiredMoveSpeed;
@@ -24,8 +25,17 @@ public class PlayerMovement : MonoBehaviour
 
     bool readyToJump = true; // Initialize to true
 
-    
-   
+    [Header("Double Jump")]
+    public int maxJumps = 2;
+    private int jumpsRemaining;
+
+    [Header("Stamina")]
+    public Image StaminaBar;
+    public float Stamina, MaxStamina;
+
+    public float ChargeRate;
+
+    private Coroutine recharge;
 
     public Transform orientation;
 
@@ -70,13 +80,18 @@ public class PlayerMovement : MonoBehaviour
         walking,
         sprinting,
         airborne,
+        wallrunning,
         crouching,
         sliding,
         dashing,
     }
     public bool sliding;
     public bool dashing;
+    public bool wallrunning;
 
+    
+
+    public float SprintCost;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -95,6 +110,11 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
         Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+
+        if (grounded)
+        {
+            jumpsRemaining = maxJumps;
+        }
 
         if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
         {
@@ -124,15 +144,16 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // Jump input
-        if (Input.GetKeyDown(jumpKey) && readyToJump && grounded)
+        if (Input.GetKeyDown(jumpKey) && jumpsRemaining > 0 && readyToJump)
         {
             readyToJump = false;
             Jump();
+            jumpsRemaining--;
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
         // Crouch input
-        if(Input.GetKeyDown(crouchKey) && grounded)
+        if (Input.GetKeyDown(crouchKey) && grounded)
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -147,6 +168,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        // if wallrunning
+        if (wallrunning)
+        {
+            state = MovementState.wallrunning;
+            desiredMoveSpeed = wallrunSpeed;
+        }
+
+
+
+
 
         if (dashing)
         {
@@ -173,19 +204,34 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        else if (Input.GetKey(crouchKey))
+        else if (grounded && Input.GetKey(crouchKey))
         {
-            //  Debug.Log("Crouching");
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
         }
 
+
         // If Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetKey(sprintKey) && Stamina > 0)
         {
-            //  Debug.Log("Sprinting");
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
+
+            Stamina -= SprintCost * Time.deltaTime;
+            if (Stamina < 0) Stamina = 0;
+
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
+        }
+        else if (grounded && Input.GetKey(sprintKey) && Stamina <= 0)
+        {
+            state = MovementState.walking;
+            desiredMoveSpeed = walkSpeed;
+
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
         }
 
 
@@ -394,10 +440,20 @@ public class PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
-    
 
 
 
+    private IEnumerator RechargeStamina()
+    {
+        yield return new WaitForSeconds(1f);
+        while (Stamina < MaxStamina)
+        {
+            Stamina += ChargeRate * 0.1f;
+            Stamina = Mathf.Min(Stamina, MaxStamina);
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 
 
 
