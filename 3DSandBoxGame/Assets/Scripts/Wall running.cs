@@ -39,6 +39,7 @@ public class Wallrunning : MonoBehaviour
     public Transform orientation;
     private PlayerMovement pm;
     private Rigidbody rb;
+    
 
     [Header("Exiting")]
     public bool exitingWall;
@@ -107,7 +108,7 @@ public class Wallrunning : MonoBehaviour
         }
 
         // Wallrunning
-        else if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() !exitingWall)
+        else if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
         {
             if (!pm.wallrunning)
             {
@@ -121,9 +122,9 @@ public class Wallrunning : MonoBehaviour
             }
 
             if (wallRunTimer <= 0 && pm.wallrunning) 
-            { 
-             exitingWall = true
-             exitWallTimer = exitingWallTime;
+            {
+                exitingWall = true;
+               exitWallTimer = exitWallTime;
             }
 
 
@@ -148,7 +149,9 @@ public class Wallrunning : MonoBehaviour
     {
         pm .wallrunning = true;
 
-        wallRunTuner = maxWallRunTime;
+        wallRunTimer = maxWallRunTime;
+
+      
     }
 
     private void WallRunningMovement()
@@ -190,6 +193,8 @@ public class Wallrunning : MonoBehaviour
     private void StopWallRun()
     {
         pm.wallrunning = false;
+
+       
     }
 
     private void WallJump()

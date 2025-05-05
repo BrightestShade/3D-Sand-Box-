@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CameraMovement : MonoBehaviour
 {
     // Sensitivity 
@@ -10,7 +11,7 @@ public class CameraMovement : MonoBehaviour
 
 
     public Transform orientation;
-
+    
     // Rotations
     float xRotation;
     float yRotation;
