@@ -43,7 +43,7 @@ public class Wallrunning : MonoBehaviour
     [Header("Exiting")]
     public bool exitingWall;
     public float exitWallTime;
-    private float exitWallTimer
+    private float exitWallTimer;
 
 
     private void Start()
@@ -80,55 +80,56 @@ public class Wallrunning : MonoBehaviour
 
     private void StateMachine()
     {
-        //Getting Inputs
+        // Getting Inputs
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
 
         upwardsRunning = Input.GetKey(upwardsRunKey);
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
-        // State 1 - Wallrunning
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
-        {
-          if(!pm.wallrunning)
-            {
-                StartWallRun();
-
-                // Wall jump initate
-                if (Input.GetKeyDown(jumpKey)) WallJump();
-            }
-        }
-
-        //State 2
-        else
+        // Exiting wallrun
+        if (exitingWall)
         {
             if (pm.wallrunning)
             {
                 StopWallRun();
             }
 
+            if (exitWallTimer > 0)
+            {
+                exitWallTimer -= Time.deltaTime;
+            }
 
+            if (exitWallTimer <= 0)
+            {
+                exitingWall = false;
+            }
         }
-        // Exiting
-        else if (exitingWall)
+
+        // Wallrunning
+        else if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround())
+        {
+            if (!pm.wallrunning)
+            {
+                StartWallRun();
+            }
+
+            if (Input.GetKeyDown(jumpKey))
+            {
+                WallJump();
+            }
+        }
+
+        // Stop wallrun if needed
+        else
         {
             if (pm.wallrunning)
             {
-                StopWallRun()
+                StopWallRun();
             }
-            if (exitWallTimer > 0)
-            {
-                exitWallTimer -= exitWallTime.deltaTime
-            } 
-            if(exitWallTimer <= 0)
-            {
-                exitingWall = false
-            }
-
-                
         }
-    }   
+    }
+
 
     private void StartWallRun()
     {
@@ -179,7 +180,7 @@ public class Wallrunning : MonoBehaviour
     private void WallJump()
     {
         exitingWall = true;
-            exitWallTimer = exitWallTime;
+        exitWallTimer = exitWallTime;
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
 
         Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
