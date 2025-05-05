@@ -105,8 +105,15 @@ public class Wallrunning : MonoBehaviour
 
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
+        if ((orientation.forward - wallForward). magnitude > (orientation.forward - -wallForward).magnitude)
+        {
+            wallForward = -wallForward;
+        }
+
         // Forward Force
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+
+       
     }
 
     private void StopWallRun()
