@@ -107,12 +107,25 @@ public class Wallrunning : MonoBehaviour
         }
 
         // Wallrunning
-        else if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround())
+        else if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() !exitingWall)
         {
             if (!pm.wallrunning)
             {
                 StartWallRun();
             }
+
+            // wallRunTimer
+            if(wallRunTimer > 0)
+            {
+                wallRunTimer -= Time.deltaTime;
+            }
+
+            if (wallRunTimer <= 0 && pm.wallrunning) 
+            { 
+             exitingWall = true
+             exitWallTimer = exitingWallTime;
+            }
+
 
             if (Input.GetKeyDown(jumpKey))
             {
@@ -134,6 +147,8 @@ public class Wallrunning : MonoBehaviour
     private void StartWallRun()
     {
         pm .wallrunning = true;
+
+        wallRunTuner = maxWallRunTime;
     }
 
     private void WallRunningMovement()
