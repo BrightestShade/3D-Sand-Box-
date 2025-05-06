@@ -303,7 +303,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(GetSlopeMoveDirection(moveDirection) * slideSpeed * 20f, ForceMode.Force);
 
                 // Apply a downward force to keep the player on the slope
-                rb.AddForce(Vector3.down * 30f, ForceMode.Force);
+                rb.AddForce(Vector3.down * 40f, ForceMode.Force);
             }
         }
 
