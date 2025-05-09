@@ -155,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
         // Crouch input
         if (Input.GetKeyDown(crouchKey) && grounded)
         {
+            Debug.Log("Crouching");
            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }

@@ -64,6 +64,7 @@ public class Sliding : MonoBehaviour
 
     private void StartSlide()
     {
+        Debug.Log("Sliding");
         pm.sliding = true;
 
         PlayerGameObject.localScale = new Vector3(PlayerGameObject.localScale.x, slideYScale, PlayerGameObject.localScale.z);
