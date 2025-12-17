@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 public class Wallrunning : MonoBehaviour
 {
+
 
     [Header("Wallrunning")]
 
@@ -37,6 +39,7 @@ public class Wallrunning : MonoBehaviour
 
     [Header("References")]
     public Transform orientation;
+    public CameraMovement cam;
     private PlayerMovement pm;
     private Rigidbody rb;
     
@@ -151,6 +154,9 @@ public class Wallrunning : MonoBehaviour
 
         wallRunTimer = maxWallRunTime;
 
+        cam.DoFov(90f);
+        if (wallLeft) cam.DoTilt(-5f);
+        if (wallRight) cam.DoTilt(5f);
       
     }
 
@@ -194,7 +200,8 @@ public class Wallrunning : MonoBehaviour
     {
         pm.wallrunning = false;
 
-       
+        cam.DoFov(80f);
+        cam.DoTilt(0f);
     }
 
     private void WallJump()
