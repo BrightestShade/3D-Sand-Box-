@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Latest.unity
+    path: Assets/Movement package/Latest.unity
     guid: 318ea487e36747a45aebec73402f4451
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
