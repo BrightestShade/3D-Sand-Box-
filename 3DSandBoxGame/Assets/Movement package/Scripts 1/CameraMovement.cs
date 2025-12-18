@@ -37,9 +37,10 @@ public class CameraMovement : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
 
-        camHolder.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
+
 
     public void DoFov(float endValue)
     {
