@@ -17,7 +17,11 @@ public class LedgeGrabbing : MonoBehaviour
     public float minTimeOnLedge;
     private float timeOnLedge;
 
-    public bool holding; 
+    public bool holding;
+
+    [Header("Ledge Jumping")]
+    public KeyCode jumpKey = KeyCode.Space;
+    public float ledgeJumpForwardForce; 
  
     [Header("Ledge Detection")]
     public float ledgeDetectionLength;
@@ -28,6 +32,8 @@ public class LedgeGrabbing : MonoBehaviour
     private Transform currLedge;
 
     private RaycastHit ledgeHit;
+
+    [Header("Exiting")] 
 
     public float DistanceToLedge { get; private set; }
 
@@ -72,6 +78,9 @@ public class LedgeGrabbing : MonoBehaviour
     {
         holding = true;
 
+        pm.unlimited = true;
+        pm.restricted = true; 
+
         currLedge = ledgeHit.transform;
         lastLedge = ledgeHit.transform;
 
@@ -96,12 +105,30 @@ public class LedgeGrabbing : MonoBehaviour
         // Hold onto ledge 
         else
         {
-            
+            if (!pm.freeze) pm.freeze = true;
+            if (pm.unlimited) pm.unlimited = false; 
         }
+
+        // Exiting if something goes wrong 
+        if (distanceToLedge > maxLedgeGrabDistance) ExitLedgeHold(); 
     }
 
     private void ExitLedgeHold()
     {
+        holding = false;
+        timeOnLedge = 0f; 
 
+        pm.restricted = false;
+        pm.freeze = false;
+
+        rb.useGravity = true;
+
+        StopAllCoroutines();  
+        Invoke(nameof(resetLastledge), 1f);
+    }
+
+    private void resetLastledge()
+    {
+        lastLedge = null;
     }
 }
