@@ -4016,19 +4016,55 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_text
-      value: Get to the tallest tower!
+      value: Climb to the tallest tower!
       objectReference: {fileID: 0}
     - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_fontSize
-      value: 22.75
+      value: 22.05
       objectReference: {fileID: 0}
     - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_margin.x
-      value: -35.58043
+      value: -71.678955
+      objectReference: {fileID: 0}
+    - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_margin.z
+      value: -63.490807
+      objectReference: {fileID: 0}
+    - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -386920867555429304, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 733477580563964073, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1199183060563263650, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_margin.w
+      value: -424.99866
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_margin.z
+      value: -282.43045
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -386920867555429304, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6614994540302821660, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4112,6 +4148,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6820449786266722111, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252578797983149664, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 8252578797983149664, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -386920867555429304, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 8252578797983149664, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
