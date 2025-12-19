@@ -71,6 +71,9 @@ public class PlayerMovement : MonoBehaviour
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
 
+    [Header("Wallrun Stamina")]
+    public float wallrunStaminaCost = 5f;
+
 
     public MovementState state;
 
@@ -105,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        HandleStamina();
 
         // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
@@ -265,6 +269,42 @@ public class PlayerMovement : MonoBehaviour
 
 
         lastDesiredMoveSpeed = desiredMoveSpeed;
+    }
+
+    private void HandleStamina()
+    {
+        // Drain stamina if sprinting or wallrunning
+        if ((state == MovementState.sprinting && Stamina > 0) || (wallrunning && Stamina > 0))
+        {
+            float drain = SprintCost * Time.deltaTime;
+            if (wallrunning)
+                drain = wallrunStaminaCost * Time.deltaTime;
+
+            Stamina -= drain;
+            Stamina = Mathf.Max(Stamina, 0f);
+
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+
+           
+            if (recharge != null)
+                StopCoroutine(recharge);
+        }
+        else
+        {
+          
+            if (Stamina < MaxStamina)
+            {
+                if (recharge != null)
+                    StopCoroutine(recharge);
+
+                recharge = StartCoroutine(RechargeStamina());
+            }
+        }
+        if (wallrunning && Stamina <= 0)
+        {
+            wallrunning = false;
+            
+        }
     }
 
 

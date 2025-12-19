@@ -24,13 +24,20 @@ public class Dashing : MonoBehaviour
     [Header("Keycodes")]
     public KeyCode dashKey = KeyCode.Q;
 
+    [Header("Dash FOV")]
+    public float dashFov = 80f;
+
+    private CameraMovement camMovement;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        camMovement = MainCamera.GetComponent<CameraMovement>();
+
     }
-    
+
     void Update()
     {
         if (Input.GetKeyDown(dashKey) && !pm.grounded)
@@ -56,6 +63,9 @@ public class Dashing : MonoBehaviour
         delayedForceToApply = forceToApply;
         Invoke(nameof(DelayedDashForce), 0.025f);
         Invoke(nameof(ResetDash), dashDuration);
+
+        camMovement.DoFov(dashFov);
+
     }
 
     private Vector3 delayedForceToApply;
@@ -67,6 +77,7 @@ public class Dashing : MonoBehaviour
 
     private void ResetDash()
     {
+        camMovement.ResetFov();
         pm.dashing = false;
     }
 }
