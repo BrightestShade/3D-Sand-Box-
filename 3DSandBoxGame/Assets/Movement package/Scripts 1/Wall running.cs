@@ -150,14 +150,16 @@ public class Wallrunning : MonoBehaviour
 
     private void StartWallRun()
     {
-        pm .wallrunning = true;
+        pm.wallrunning = true;
 
         wallRunTimer = maxWallRunTime;
 
         cam.DoFov(90f);
         if (wallLeft) cam.DoTilt(-5f);
         if (wallRight) cam.DoTilt(5f);
-      
+
+        // Reset double jumps when starting wallrun
+        pm.jumpsRemaining = pm.maxJumps;
     }
 
     private void WallRunningMovement()

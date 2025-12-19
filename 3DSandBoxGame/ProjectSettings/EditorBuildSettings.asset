@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Movement package/MainMenu.unity
+    path: Assets/Movement package/MainMEnu.unity
     guid: d44cab6a3c0b415489cca0f8f4de3f47
   - enabled: 1
-    path: Assets/Movement package/Latest.unity
-    guid: 318ea487e36747a45aebec73402f4451
+    path: Assets/Movement package/new lv.unity
+    guid: f0b6c12e4061ae64e9282b0750cbff2d
   - enabled: 1
     path: Assets/Movement package/WinScreen.unity
     guid: 0adbba45773f6bf4c84ef8d622fd821e

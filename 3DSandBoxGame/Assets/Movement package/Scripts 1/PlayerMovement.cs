@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Double Jump")]
     public int maxJumps = 2;
-    private int jumpsRemaining;
+    public int jumpsRemaining;
 
     [Header("Stamina")]
     public Image StaminaBar;
@@ -276,34 +276,25 @@ public class PlayerMovement : MonoBehaviour
         // Drain stamina if sprinting or wallrunning
         if ((state == MovementState.sprinting && Stamina > 0) || (wallrunning && Stamina > 0))
         {
-            float drain = SprintCost * Time.deltaTime;
-            if (wallrunning)
-                drain = wallrunStaminaCost * Time.deltaTime;
-
+            float drain = wallrunning ? wallrunStaminaCost * Time.deltaTime : SprintCost * Time.deltaTime;
             Stamina -= drain;
             Stamina = Mathf.Max(Stamina, 0f);
-
             StaminaBar.fillAmount = Stamina / MaxStamina;
 
-           
+            // Stop any ongoing recharge while draining
             if (recharge != null)
+            {
                 StopCoroutine(recharge);
+                recharge = null;
+            }
         }
         else
         {
-          
-            if (Stamina < MaxStamina)
+            // If not already recharging, start the coroutine
+            if (Stamina < MaxStamina && recharge == null)
             {
-                if (recharge != null)
-                    StopCoroutine(recharge);
-
                 recharge = StartCoroutine(RechargeStamina());
             }
-        }
-        if (wallrunning && Stamina <= 0)
-        {
-            wallrunning = false;
-            
         }
     }
 
@@ -486,7 +477,8 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator RechargeStamina()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f); // Optional delay before regen
+
         while (Stamina < MaxStamina)
         {
             Stamina += ChargeRate * 0.1f;
@@ -494,6 +486,9 @@ public class PlayerMovement : MonoBehaviour
             StaminaBar.fillAmount = Stamina / MaxStamina;
             yield return new WaitForSeconds(0.1f);
         }
+
+        // Done recharging
+        recharge = null;
     }
 
 

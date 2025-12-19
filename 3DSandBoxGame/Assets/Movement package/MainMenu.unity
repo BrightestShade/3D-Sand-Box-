@@ -376,8 +376,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+  m_sharedMaterial: {fileID: -386920867555429304, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -658,6 +658,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5170499812010673856, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258861988040855041, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 5258861988040855041, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -386920867555429304, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 5258861988040855041, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938724604709083295, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 6938724604709083295, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -386920867555429304, guid: d6f53bdc266afe140919d427b9086e0b, type: 2}
+    - target: {fileID: 6938724604709083295, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7377203195100674638, guid: 2a099921547abc846b0b33bd75d899e5, type: 3}
