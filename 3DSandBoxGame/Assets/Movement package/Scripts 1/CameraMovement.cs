@@ -17,11 +17,18 @@ public class CameraMovement : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    private Camera cam;
+    private float defaultFov;
+
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        cam = GetComponent<Camera>();
+        defaultFov = cam.fieldOfView;
+
 
     }
 
@@ -44,7 +51,7 @@ public class CameraMovement : MonoBehaviour
 
     public void DoFov(float endValue)
     {
-
+        cam.DOKill(); 
         GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
 
     }
@@ -54,5 +61,10 @@ public class CameraMovement : MonoBehaviour
 
         transform.DOLocalRotate(new Vector3(0, 0, zTilt), 0.25f);
 
+    }
+
+    public void ResetFov()
+    {
+        DoFov(defaultFov);
     }
 }
