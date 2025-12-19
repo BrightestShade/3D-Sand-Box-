@@ -14,7 +14,7 @@ public class Quit : MonoBehaviour
         }
     }
 
-    void QuitGame()
+    public void QuitGame()
     {
         // Quit the application in build
         Application.Quit();

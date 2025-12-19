@@ -5,18 +5,16 @@ public class StopwatchTimer : MonoBehaviour
 {
     [Header("UI")]
     public TextMeshProUGUI timerText;
-    
+
+    public static float finalTime;   
 
     private float elapsedTime;
     private bool isRunning;
-
-    
 
     void Start()
     {
         elapsedTime = 0f;
         isRunning = true;
-
         UpdateTimerText(0f);
     }
 
@@ -30,7 +28,7 @@ public class StopwatchTimer : MonoBehaviour
 
     private void UpdateTimerText(float time)
     {
-        timerText.text = time.ToString("F1"); // 1 decimal place
+        timerText.text = time.ToString("F1");
     }
 
     public void StopTimer()
@@ -38,8 +36,19 @@ public class StopwatchTimer : MonoBehaviour
         if (!isRunning) return;
 
         isRunning = false;
-        Debug.Log("GameWin");
+        finalTime = elapsedTime;
+
+       
+        float bestTime = PlayerPrefs.GetFloat("BestTime", float.MaxValue);
+
+       
+        if (finalTime < bestTime)
+        {
+            PlayerPrefs.SetFloat("BestTime", finalTime);
+            PlayerPrefs.Save();
+            Debug.Log("New Best Time!");
+        }
+
+        Debug.Log("Final Time: " + finalTime);
     }
-
-
 }
