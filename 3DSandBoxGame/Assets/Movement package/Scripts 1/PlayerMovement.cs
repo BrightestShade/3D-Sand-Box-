@@ -118,17 +118,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
         {
-            rb.drag = groundDrag;
+            rb.linearDamping = groundDrag;
         }
         else
         {
-            rb.drag = 0;
+            rb.linearDamping = 0;
         }
 
         if (freeze)
         {
        
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
 
         }
     }
@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.sliding;
 
-            if (OnSlope() && rb.velocity.y < 0.1f)
+            if (OnSlope() && rb.linearVelocity.y < 0.1f)
             {
                 desiredMoveSpeed = slideSpeed;
 
@@ -295,7 +295,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
 
-            if(rb.velocity.y > 0)
+            if(rb.linearVelocity.y > 0)
             {
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
             }
@@ -329,26 +329,26 @@ public class PlayerMovement : MonoBehaviour
         if (activeGrapple) return;
         if (dashing) return;
         // Slope speed limiting
-        if(rb.velocity.magnitude > desiredMoveSpeed)
+        if(rb.linearVelocity.magnitude > desiredMoveSpeed)
         {
-            rb.velocity = rb.velocity.normalized * desiredMoveSpeed;
+            rb.linearVelocity = rb.linearVelocity.normalized * desiredMoveSpeed;
         }
         //Ground & Air speed limiting
         else
         {
-            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
             if (flatVel.magnitude > desiredMoveSpeed)
             {
                 Vector3 limitedVel = flatVel.normalized * desiredMoveSpeed;
-                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+                rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
         }
     }
 
     private void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
@@ -404,7 +404,7 @@ public class PlayerMovement : MonoBehaviour
     private void SetVelocity()
     {
         enableMovementOnNextTouch = true;
-        rb.velocity = velocityToSet;
+        rb.linearVelocity = velocityToSet;
     }
 
     public void ResetRestrictions()
