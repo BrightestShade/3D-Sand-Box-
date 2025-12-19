@@ -1436,7 +1436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f9b08198497d4182935501a3b42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopwatch: {fileID: 0}
 --- !u!65 &308682826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8558,7 +8557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3283254829207799950, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 418
+      value: -380
       objectReference: {fileID: 0}
     - target: {fileID: 3283254829207799950, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8896,7 +8895,7 @@ PrefabInstance:
     - target: {fileID: 6558524532855096718, guid: e7663351b2cd87a4faec1ba085d73076, type: 3}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1969726450}
     - target: {fileID: 6558524532855096718, guid: e7663351b2cd87a4faec1ba085d73076, type: 3}
       propertyPath: m_Enabled
       value: 1
