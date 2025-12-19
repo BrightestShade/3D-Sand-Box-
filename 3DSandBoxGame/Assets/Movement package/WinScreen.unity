@@ -133,10 +133,7 @@ GameObject:
   - component: {fileID: 78415033}
   - component: {fileID: 78415034}
   - component: {fileID: 78415035}
-<<<<<<< HEAD
-=======
   - component: {fileID: 78415036}
->>>>>>> d4682669850b5879a57ffb12160be24a69900534
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -254,8 +251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581a6d8b445f9e04f859268e8fe097e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
 --- !u!114 &78415036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86acd3be1c299644b30b3ad247d8cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
->>>>>>> d4682669850b5879a57ffb12160be24a69900534
 --- !u!1 &115376188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,8 +1036,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797649110}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &843200621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1104,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> d4682669850b5879a57ffb12160be24a69900534
 --- !u!1 &1707256143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,7 +1344,4 @@ SceneRoots:
   - {fileID: 78415032}
   - {fileID: 1773608636}
   - {fileID: 336711161}
-<<<<<<< HEAD
-=======
   - {fileID: 843200624}
->>>>>>> d4682669850b5879a57ffb12160be24a69900534
