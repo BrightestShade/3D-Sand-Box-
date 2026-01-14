@@ -50,5 +50,6 @@ public class StopwatchTimer : MonoBehaviour
         }
 
         Debug.Log("Final Time: " + finalTime);
+        Debug.Log("StopTimer CALLED");
     }
 }
