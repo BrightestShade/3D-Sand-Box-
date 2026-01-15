@@ -5266,6 +5266,12 @@ PrefabInstance:
       value: 486.81024
       objectReference: {fileID: 0}
     - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
+      propertyPath: m_text
+      value: "Basics:\nCrouch = Ctrl\nSprint = Shift\nSlide = Sprint + Ctrl\nJump/2x
+        jump = Space\nDash = In air + Q \n\nWall Running: \nShift + W or S = Upwards
+        wallrun\nCtrl + W or S = Downwards wallrun\n\nEsc = Quit\n\n\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5311378587316188774, guid: 726515f5cf6735541ab77e0ce868cae9, type: 3}
       propertyPath: m_margin.w
       value: -424.99866
       objectReference: {fileID: 0}
@@ -14856,6 +14862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MONEYUwatertank (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 284a75c016a9e5246bcc5abdcfbb93dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15060,6 +15070,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 63d834ed85b8bbf4e95c44de724995c3, type: 3}
       propertyPath: m_Name
       value: BU^( (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63d834ed85b8bbf4e95c44de724995c3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
