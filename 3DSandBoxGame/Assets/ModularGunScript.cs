@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class ModularGunScript : MonoBehaviour
 {
     //Gun stats
@@ -20,11 +22,17 @@ public class ModularGunScript : MonoBehaviour
 
     // Graphics
     public GameObject muzzleFlash;
+    public GameObject bulletHoleGraphic;
+    public CameraShake camShake;
+    public float camShakeMagnitude, camShakeDuration;
 
-    // public CamShake camShake;
-    //public float camShakeMagnitude;
-    TextMeshProUGUI text;
+    public TextMeshProUGUI text;
+    public Text counterText;
+    public float counter;
 
+  
+        
+    
     private void Awake()
     {
         bulletsLeft = magazineCapacity;
@@ -32,11 +40,12 @@ public class ModularGunScript : MonoBehaviour
 
         //set the ammo count
         text.SetText(bulletsLeft + " / " + magazineCapacity);
+
     }
 
 
 
-    private void Update()
+    private void Update() 
     {
         MyInput();
     }
@@ -56,8 +65,8 @@ public class ModularGunScript : MonoBehaviour
             Shoot();
         }
     }
-    // shake the cam
-    // camShake.Shake(camShakeDuration, camShakeMagnitude);
+    
+     
    
 
 
@@ -88,7 +97,10 @@ public class ModularGunScript : MonoBehaviour
 
         }
 
-        
+        //shake the cam
+        camShake.Shake(camShakeDuration, camShakeMagnitude);
+
+        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
 
       bulletsLeft--;
