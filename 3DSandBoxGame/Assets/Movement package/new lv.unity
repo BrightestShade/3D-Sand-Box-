@@ -10481,6 +10481,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1250043594020008595, guid: 9a118ded3a22641439b2a3a73ef0d0f6, type: 3}
+      propertyPath: field of view
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 1579304656926510925, guid: 9a118ded3a22641439b2a3a73ef0d0f6, type: 3}
       propertyPath: m_Name
       value: CameraHolder 1
@@ -18620,7 +18624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1435208983
 Transform:
   m_ObjectHideFlags: 0
